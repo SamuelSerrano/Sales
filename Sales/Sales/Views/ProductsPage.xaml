@@ -6,7 +6,13 @@
              Title="Products">
     <ContentPage.Content>
         <StackLayout BindingContext="{Binding Products}" Padding="5">
-            <ListView ItemsSource="{Binding Products}}" HasUnevenRows="True">
+            <ListView  
+                      IsPullToRefreshEnabled="True"
+                      HasUnevenRows="True" 
+                      ItemsSource="{Binding Products}"
+                      IsRefreshing="{Binding IsRefreshing}" 
+                      RefreshCommand="{Binding RefreshCommand}" 
+                      >
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>

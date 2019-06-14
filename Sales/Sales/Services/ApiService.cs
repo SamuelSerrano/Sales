@@ -7,9 +7,40 @@ namespace Sales.Services
 	using System.Net.Http;
 	using System.Threading.Tasks;
 	using Newtonsoft.Json;
+	using Plugin.Connectivity;
 	using Sales.Common.Models;
 	public class ApiService
 	{
+		public async Task<Response> CheckConnection()
+		{
+			if (!CrossConnectivity.Current.IsConnected)
+			{
+				return new Response
+				{
+					IsSuccess = false,
+					//Message = Languages.NoInternet,
+					Message = "Please turn On your internet setting",
+				};
+			}
+
+			var isReachable = await CrossConnectivity.Current.IsRemoteReachable("google.com");
+			if (!isReachable)
+			{
+				return new Response
+				{
+					IsSuccess = false,
+					//Message = Languages.NoInternet,
+					Message = "No internet connection",
+				};
+			}
+
+			return new Response
+			{
+				IsSuccess = true,
+			};
+		}
+
+
 		/// <summary>
 		/// Método Genérico que consume cualquier servicios webApi y cualquier lista.
 		/// </summary>
