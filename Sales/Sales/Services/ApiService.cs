@@ -1,5 +1,4 @@
 ﻿
-
 namespace Sales.Services
 {
 	using System;
@@ -8,7 +7,8 @@ namespace Sales.Services
 	using System.Threading.Tasks;
 	using Newtonsoft.Json;
 	using Plugin.Connectivity;
-	using Sales.Common.Models;
+	using Common.Models;
+	using Helpers;
 	public class ApiService
 	{
 		public async Task<Response> CheckConnection()
@@ -18,8 +18,7 @@ namespace Sales.Services
 				return new Response
 				{
 					IsSuccess = false,
-					//Message = Languages.NoInternet,
-					Message = "Please turn On your internet setting",
+					Message =Languages.TurnOnInternet,
 				};
 			}
 
@@ -29,8 +28,7 @@ namespace Sales.Services
 				return new Response
 				{
 					IsSuccess = false,
-					//Message = Languages.NoInternet,
-					Message = "No internet connection",
+					Message = Languages.NoInternet,
 				};
 			}
 

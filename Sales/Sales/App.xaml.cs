@@ -11,8 +11,8 @@ namespace Sales
 		public App()
 		{
 			InitializeComponent();
-
 			MainPage = new NavigationPage(new ProductsPage());
+
 		}
 
 		protected override void OnStart()

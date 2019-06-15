@@ -9,6 +9,8 @@
             <infra:InstanceLocator x:Key="Locator"/>
             <!-- Parameters-->
             <x:String x:Key="UrlAPI">http://201.244.122.43</x:String>
+            <x:String x:Key="UrlPrefix">/api</x:String>
+            <x:String x:Key="UrlProductController">/Products</x:String>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

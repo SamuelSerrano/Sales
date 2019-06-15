@@ -6,6 +6,7 @@
 	using System.Windows.Input;
 	using Common.Models;
 	using GalaSoft.MvvmLight.Command;
+	using Sales.Helpers;
 	using Sales.Services;
 	using Xamarin.Forms;
 
@@ -37,20 +38,23 @@
 
 		private async void LoadProducts()
 		{
-			this.IsRefreshing = true;
+			this.IsRefreshing = true;			
 			var checkConnection = await this.apiService.CheckConnection();
 			if (!checkConnection.IsSuccess)
 			{
 				this.IsRefreshing = false;
-				await Application.Current.MainPage.DisplayAlert("Error", checkConnection.Message, "Accept");
+				this.Products = new ObservableCollection<Product>(new List<Product>());
+				await Application.Current.MainPage.DisplayAlert(Languages.Error, checkConnection.Message, Languages.Accept);				
 				return;
 			}
 			var urlAPI = Application.Current.Resources["UrlAPI"].ToString();
-			var response = await apiService.GetList<Product>(urlAPI, "/api", "/Products");
+			var urlPrefix = Application.Current.Resources["UrlPrefix"].ToString();
+			var urlProductController = Application.Current.Resources["UrlProductController"].ToString();
+			var response = await apiService.GetList<Product>(urlAPI, urlPrefix, urlProductController);
 			if (!response.IsSuccess)
 			{
 				this.IsRefreshing = false;
-				await Application.Current.MainPage.DisplayAlert("Error",response.Message,"Accept");
+				await Application.Current.MainPage.DisplayAlert(Languages.Error,response.Message,Languages.Accept);
 				return;
 			}
 
