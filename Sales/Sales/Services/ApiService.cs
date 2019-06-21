@@ -9,6 +9,8 @@ namespace Sales.Services
 	using Plugin.Connectivity;
 	using Common.Models;
 	using Helpers;
+	using System.Text;
+
 	public class ApiService
 	{
 		public async Task<Response> CheckConnection()
@@ -70,6 +72,43 @@ namespace Sales.Services
 				{
 					IsSuccess = true,
 					Result = list
+				};
+			}
+			catch (Exception Ex)
+			{
+				return new Response
+				{
+					IsSuccess = false,
+					Message = Ex.Message
+				};
+			}
+		}
+
+		public async Task<Response> Post<T>(string urlbase, string prefix, string controller, T model)
+		{
+			try
+			{
+				var request = JsonConvert.SerializeObject(model);
+				var content = new StringContent(request, Encoding.UTF8, "application/json");
+				var client = new HttpClient();
+				client.BaseAddress = new Uri(urlbase);
+				var url = $"{prefix}{controller}";
+				var response = await client.PostAsync(url,content);
+				var answer = await response.Content.ReadAsStringAsync();
+				if (!response.IsSuccessStatusCode)
+				{
+					return new Response
+					{
+						IsSuccess = false,
+						Message = answer
+					};
+				}
+
+				var obj = JsonConvert.DeserializeObject<T>(answer);
+				return new Response
+				{
+					IsSuccess = true,
+					Result = obj;
 				};
 			}
 			catch (Exception Ex)

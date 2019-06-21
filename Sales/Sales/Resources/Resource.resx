@@ -138,4 +138,34 @@
   <data name="TurnOnInternet" xml:space="preserve">
     <value>Turn on your internet Settings.</value>
   </data>
+  <data name="AddProduct" xml:space="preserve">
+    <value>Add Product</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="DescriptionPlaceHolder" xml:space="preserve">
+    <value>Enter Description</value>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>Price</value>
+  </data>
+  <data name="PricePlaceHolder" xml:space="preserve">
+    <value>Enter Price</value>
+  </data>
+  <data name="Remarks" xml:space="preserve">
+    <value>Remarks</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="ChangeImage" xml:space="preserve">
+    <value>Touch the image to change</value>
+  </data>
+  <data name="DescriptionError" xml:space="preserve">
+    <value>You must enter a description</value>
+  </data>
+  <data name="PriceError" xml:space="preserve">
+    <value>You must enter a number greather than zero</value>
+  </data>
 </root>

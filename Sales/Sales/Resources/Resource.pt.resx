@@ -120,9 +120,6 @@
   <data name="Error" xml:space="preserve">
     <value>Erro</value>
   </data>
-  <data name="Acept" xml:space="preserve">
-    <value>Aceitar</value>
-  </data>
   <data name="Message" xml:space="preserve">
     <value>Mesnagem</value>
   </data>
@@ -137,5 +134,38 @@
   </data>
   <data name="Products" xml:space="preserve">
     <value>Produtos</value>
+  </data>
+  <data name="Accept" xml:space="preserve">
+    <value>Aceitar</value>
+  </data>
+  <data name="AddProduct" xml:space="preserve">
+    <value>Adicionar produto</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Descrição</value>
+  </data>
+  <data name="DescriptionPlaceHolder" xml:space="preserve">
+    <value>Descrição</value>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>Preço!</value>
+  </data>
+  <data name="PricePlaceHolder" xml:space="preserve">
+    <value>Digite o Preço</value>
+  </data>
+  <data name="Remarks" xml:space="preserve">
+    <value>Observações</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Guardar</value>
+  </data>
+  <data name="ChangeImage" xml:space="preserve">
+    <value>Toque na imagem para mudar!</value>
+  </data>
+  <data name="DescriptionError" xml:space="preserve">
+    <value>Você deve digitar uma descrição!</value>
+  </data>
+  <data name="PriceError" xml:space="preserve">
+    <value>Você deve digitar um número maior que zero!</value>
   </data>
 </root>

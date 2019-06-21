@@ -21,6 +21,13 @@
 		[DataType(DataType.Date)]
 		public DateTime PublishOn { get; set; }
 
+		public string ImageFullPath { get
+			{
+				if (string.IsNullOrEmpty(this.ImagePath)) return "noimage_256";
+				return $"http://201.244.122.43/WebSales/{this.ImagePath.Substring(1)}";
+			}
+		}
+
 		public override string ToString()
 		{
 			return this.Description;
