@@ -20,7 +20,7 @@ namespace Sales.Services
 				return new Response
 				{
 					IsSuccess = false,
-					Message =Languages.TurnOnInternet,
+					Message = Languages.TurnOnInternet,
 				};
 			}
 
@@ -93,7 +93,7 @@ namespace Sales.Services
 				var client = new HttpClient();
 				client.BaseAddress = new Uri(urlbase);
 				var url = $"{prefix}{controller}";
-				var response = await client.PostAsync(url,content);
+				var response = await client.PostAsync(url, content);
 				var answer = await response.Content.ReadAsStringAsync();
 				if (!response.IsSuccessStatusCode)
 				{
@@ -108,7 +108,7 @@ namespace Sales.Services
 				return new Response
 				{
 					IsSuccess = true,
-					Result = obj;
+					Result = obj
 				};
 			}
 			catch (Exception Ex)
@@ -121,4 +121,5 @@ namespace Sales.Services
 			}
 		}
 	}
+	
 }

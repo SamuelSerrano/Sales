@@ -39,10 +39,10 @@
                     <Label Grid.Column="0"
                            Grid.Row="2"
                            VerticalOptions="Center"
-                           Text="{i18n:Translate Remarks}" Text="{Binding EntryRemarks}"></Label>
+                           Text="{i18n:Translate Remarks}"></Label>
                     <Editor Grid.Column="1"
                            Grid.Row="2"
-                           VerticalOptions="FillAndExpand"></Editor>
+                           VerticalOptions="FillAndExpand" Text="{Binding EntryRemarks}"></Editor>
                     
                 </Grid>
                 <ActivityIndicator VerticalOptions="CenterAndExpand" IsRunning="{Binding IsRunning}"></ActivityIndicator>
