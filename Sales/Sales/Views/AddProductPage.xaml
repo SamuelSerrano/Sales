@@ -8,7 +8,11 @@
     <ContentPage.Content>
         <ScrollView>
             <StackLayout BindingContext="{Binding AddProduct}" Padding="5">
-                <Image Source="noimage_256"></Image>
+                <Image Source="{Binding ImageSource}">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ChangeImageCommand}"></TapGestureRecognizer>
+                    </Image.GestureRecognizers>
+                </Image>
                 <Label Text="{i18n:Translate ChangeImage}" FontSize="Small" HorizontalOptions="Center"></Label>
                 <Grid>
                     <Grid.ColumnDefinitions>

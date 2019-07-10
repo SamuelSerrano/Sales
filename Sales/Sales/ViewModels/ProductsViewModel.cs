@@ -12,13 +12,12 @@
 
 	public class ProductsViewModel : BaseViewModel
     {
+		#region Atributes
 		private ApiService apiService;
-
-
-		private bool isRefreshing;
-		
-
+		private bool isRefreshing;		
 		private ObservableCollection<Product> products;
+		#endregion
+
 		public ObservableCollection<Product> Products {
 			get { return this.products; }
 			set { this.SetValue(ref this.products, value); }
@@ -29,12 +28,27 @@
 			get { return this.isRefreshing; }
 			set { this.SetValue(ref this.isRefreshing, value); }
 		}
-
+		#region Constructor
 		public ProductsViewModel()
 		{
+			instance = this;
 			this.apiService = new ApiService();
 			this.LoadProducts();
 		}
+		#endregion
+
+		#region Singleton
+		private static ProductsViewModel instance;
+
+		public static ProductsViewModel GetInstance()
+		{
+			if (instance == null)
+			{
+				return new ProductsViewModel();
+			}
+			return instance;
+		}
+		#endregion
 
 		private async void LoadProducts()
 		{
