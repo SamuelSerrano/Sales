@@ -3,7 +3,8 @@
 	using System;
 	using System.Collections.Generic;
 	using System.Collections.ObjectModel;
-	using System.Windows.Input;
+    using System.Linq;
+    using System.Windows.Input;
 	using Common.Models;
 	using GalaSoft.MvvmLight.Command;
 	using Sales.Helpers;
@@ -15,10 +16,10 @@
 		#region Atributes
 		private ApiService apiService;
 		private bool isRefreshing;		
-		private ObservableCollection<Product> products;
+		private ObservableCollection<ProductItemViewModel> products;
 		#endregion
 
-		public ObservableCollection<Product> Products {
+		public ObservableCollection<ProductItemViewModel> Products {
 			get { return this.products; }
 			set { this.SetValue(ref this.products, value); }
 		}
@@ -57,7 +58,7 @@
 			if (!checkConnection.IsSuccess)
 			{
 				this.IsRefreshing = false;
-				this.Products = new ObservableCollection<Product>(new List<Product>());
+				this.Products = new ObservableCollection<ProductItemViewModel>(new List<ProductItemViewModel>());
 				await Application.Current.MainPage.DisplayAlert(Languages.Error, checkConnection.Message, Languages.Accept);				
 				return;
 			}
@@ -73,7 +74,18 @@
 			}
 
 			var list = (List<Product>)response.Result;
-			this.Products = new ObservableCollection<Product>(list);
+			var mylist = list.Select(p=> new ProductItemViewModel
+			{
+				Description = p.Description,
+				ImageArray = p.ImageArray,
+				ImagePath = p.ImagePath,
+				IsAvailable = p.IsAvailable,
+				Price = p.Price,
+				ProductId = p.ProductId,
+				PublishOn = p.PublishOn,
+				Remarks = p.Remarks,
+			});
+			this.Products = new ObservableCollection<ProductItemViewModel>(mylist);
 			this.IsRefreshing = false;
 		}
 

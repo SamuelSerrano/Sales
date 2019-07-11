@@ -120,6 +120,39 @@ namespace Sales.Services
 				};
 			}
 		}
+
+		public async Task<Response> Delete(string urlbase, string prefix, string controller, int id)
+		{
+			try
+			{
+				var client = new HttpClient();
+				client.BaseAddress = new Uri(urlbase);
+				var url = $"{prefix}{controller}/{id}";
+				var response = await client.DeleteAsync(url);
+				var answer = await response.Content.ReadAsStringAsync();
+				if (!response.IsSuccessStatusCode)
+				{
+					return new Response
+					{
+						IsSuccess = false,
+						Message = answer
+					};
+				}
+				
+				return new Response
+				{
+					IsSuccess = true,
+				};
+			}
+			catch (Exception Ex)
+			{
+				return new Response
+				{
+					IsSuccess = false,
+					Message = Ex.Message
+				};
+			}
+		}
 	}
 	
 }
