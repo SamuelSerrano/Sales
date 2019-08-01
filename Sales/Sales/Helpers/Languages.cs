@@ -148,5 +148,15 @@
 			get { return Resource.Confirm; }
 		}
 
+		public static string EditProduct
+		{
+			get { return Resource.EditProduct; }
+		}
+
+		public static string IsAvailable
+		{
+			get { return Resource.IsAvailable; }
+		}
+
 	}
 }

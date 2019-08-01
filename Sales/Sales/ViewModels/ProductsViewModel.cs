@@ -19,6 +19,7 @@
 		private ObservableCollection<ProductItemViewModel> products;
 		#endregion
 
+		public List<Product> MyProducts { get; set; }
 		public ObservableCollection<ProductItemViewModel> Products {
 			get { return this.products; }
 			set { this.SetValue(ref this.products, value); }
@@ -73,8 +74,14 @@
 				return;
 			}
 
-			var list = (List<Product>)response.Result;
-			var mylist = list.Select(p=> new ProductItemViewModel
+			this.MyProducts = (List<Product>)response.Result;
+			this.RefreshList();			
+			this.IsRefreshing = false;
+		}
+
+		public void RefreshList()
+		{
+			var mylistProductItemViewModel = MyProducts.Select(p => new ProductItemViewModel
 			{
 				Description = p.Description,
 				ImageArray = p.ImageArray,
@@ -85,10 +92,8 @@
 				PublishOn = p.PublishOn,
 				Remarks = p.Remarks,
 			});
-			this.Products = new ObservableCollection<ProductItemViewModel>(mylist);
-			this.IsRefreshing = false;
+			this.Products = new ObservableCollection<ProductItemViewModel>(mylistProductItemViewModel.OrderBy(p => p.Description));
 		}
-
 
 		public ICommand RefreshCommand
 		{
